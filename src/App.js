@@ -10,7 +10,10 @@ class App extends Component {
   }
   
   componentDidMount() {
-    fetch("https://yts.am/api/v2/list_movies.json?sort_by=rating")
+    fetch("https://yts.am/api/v2/list_movies.json?sort_by=download_count")
+    .then(response => response.json()) // fetch가 끝나면 실행
+    .then(json => console.log(json))
+    .catch(err => console.log(err)) //fetch에서 에러 발생시 catch실행
   }
   
   _renderMovies = () => {
