@@ -8,9 +8,9 @@ class App extends Component {
 
   state = {
   }
-
+  
   componentDidMount() {
-
+    fetch("https://yts.am/api/v2/list_movies.json?sort_by=rating")
   }
   
   _renderMovies = () => {
