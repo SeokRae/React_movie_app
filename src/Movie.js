@@ -4,10 +4,11 @@ import './Movie.css';
 class Movie extends Component {
     // 컴포넌트는 항상 render를 해야 한다는 것을 기억
     render() {
+        // console.log(this.props);
         return(
             <div>
-                <h1>Hello this is a movie</h1>
-                <MoviePoster />
+                <MoviePoster poster={this.props.poster}/>
+                <h1>{this.props.title}</h1>
             </div>
         )
     }
@@ -15,8 +16,9 @@ class Movie extends Component {
 
 class MoviePoster extends Component {
     render() {
+        // console.log(this.props);
         return(
-            <img src="http://img.movist.com/?img=/x00/04/73/55_p1.jpg" />
+            <img src={this.props.poster} />
         )
     }
 }
