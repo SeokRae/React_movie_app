@@ -10,18 +10,30 @@ class App extends Component {
   }
   
   componentDidMount() {
-    fetch("https://yts.am/api/v2/list_movies.json?sort_by=download_count")
-    .then(response => response.json()) // fetch가 끝나면 실행
-    .then(json => console.log(json))
-    .catch(err => console.log(err)) //fetch에서 에러 발생시 catch실행
+    this._getMovies();
   }
   
   _renderMovies = () => {
-    const movies = this.state.movies.map((movie, index) => {
-      return <Movie title={movie.title} poster={movie.poster} key={index} />;
+    const movies = this.state.movies.map(movie => {
+      console.log(movie)
+      return <Movie title={movie.title} poster={movie.medium_cover_image} key={movie.id} />;
     });
     return movies
   }
+
+  _getMovies = async () => {
+    const movies = await this._callApi();
+    this.setState({
+      movies
+    })
+  }
+
+  _callApi = () => {
+    return fetch("https://yts.am/api/v2/list_movies.json?sort_by=download_count")
+    .then(response => response.json()) // fetch가 끝나면 실행
+    .then(json => json.data.movies)
+    .catch(err => console.log(err)); //fetch에서 에러 발생시 catch실행
+  };
 
   render() {
     return (
