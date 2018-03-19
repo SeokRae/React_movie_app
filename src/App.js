@@ -23,7 +23,21 @@ const movies = [
 ];
 
 class App extends Component {
+  // Render: componentWillMount() -> render() -> componentDidMount()
+  // Update: componentWillReceiveProps() -> shouldComponentUpdate() -> componentWillUpdate() -> render() -> componentDidUpdate()
+  
+  componentWillMount(){
+    // 사이클의 시작
+    // 보통 api 요청 할 때 사용
+    console.log("1. will mount")
+  }
+  componentDidMount(){
+    // 컴포넌트가 정상적으로 자리잡았음을 인식 할 수 있음
+    console.log("3. did mount")
+  }
   render() {
+    // 사이클 출력
+    console.log("2. did render")
     return <div className="App">
         {movies.map((movie, index) => {
           return <Movie title={movie.title} poster={movie.poster} key={index}/>
